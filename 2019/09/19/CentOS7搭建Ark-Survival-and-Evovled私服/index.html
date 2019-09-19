@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>CentOS7搭建Ark: Survival and Evovled私服 | GreatestCapacity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SteamCMD的安装与使用参考了[1]，Ark私服搭建参考了[2]，服务器详细配置参考了[3]，GameUserSettings.ini文件的生成采用了ATLAS / ARK GameUserSettings.ini Generator这款在线工具。对于游戏中的管理员命令，参见[4]。 安装SteamCMDCentOS7的官源中没有提供SteamCMD，所以按照[1]中Manually这一节的指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7搭建Ark: Survival and Evovled私服">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/CentOS7搭建Ark-Survival-and-Evovled私服/index.html">
+<meta property="og:site_name" content="GreatestCapacity">
+<meta property="og:description" content="SteamCMD的安装与使用参考了[1]，Ark私服搭建参考了[2]，服务器详细配置参考了[3]，GameUserSettings.ini文件的生成采用了ATLAS / ARK GameUserSettings.ini Generator这款在线工具。对于游戏中的管理员命令，参见[4]。 安装SteamCMDCentOS7的官源中没有提供SteamCMD，所以按照[1]中Manually这一节的指">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-19T10:00:15.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS7搭建Ark: Survival and Evovled私服">
+<meta name="twitter:description" content="SteamCMD的安装与使用参考了[1]，Ark私服搭建参考了[2]，服务器详细配置参考了[3]，GameUserSettings.ini文件的生成采用了ATLAS / ARK GameUserSettings.ini Generator这款在线工具。对于游戏中的管理员命令，参见[4]。 安装SteamCMDCentOS7的官源中没有提供SteamCMD，所以按照[1]中Manually这一节的指">
+  
+    <link rel="alternate" href="/atom.xml" title="GreatestCapacity" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GreatestCapacity</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CentOS7搭建Ark-Survival-and-Evovled私服" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/CentOS7搭建Ark-Survival-and-Evovled私服/" class="article-date">
+  <time datetime="2019-09-19T09:51:21.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CentOS7搭建Ark: Survival and Evovled私服
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SteamCMD的安装与使用参考了[1]，Ark私服搭建参考了[2]，服务器详细配置参考了[3]，<code>GameUserSettings.ini</code>文件的生成采用了<a href="https://ini.arkforum.de/index.php" target="_blank" rel="noopener">ATLAS / ARK GameUserSettings.ini Generator</a>这款在线工具。对于游戏中的管理员命令，参见[4]。</p>
+<h2 id="安装SteamCMD"><a href="#安装SteamCMD" class="headerlink" title="安装SteamCMD"></a>安装SteamCMD</h2><p>CentOS7的官源中没有提供SteamCMD，所以按照[1]中Manually这一节的指引安装SteamCMD：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd -m steam</span><br><span class="line">yum install glic libstdc++ glibc.i86 libstdc++.i686</span><br><span class="line">su - steam</span><br><span class="line">mkdir Steam &amp;&amp; <span class="built_in">cd</span> Steam/</span><br><span class="line">curl -sqL <span class="string">"https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"</span> | tar zxvf -</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Ark私服"><a href="#安装Ark私服" class="headerlink" title="安装Ark私服"></a>安装Ark私服</h2><p>运行SteamCMD：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd Steam/</span><br><span class="line">./steamcmd.sh</span><br></pre></td></tr></table></figure>
+
+<p>使用匿名用户登陆，然后安装Ark私服到<code>～/game_servers/ark/</code>目录下，其中376030是Ark服务器的ID[5]：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">login anonymous</span><br><span class="line">force_install_dir /home/website/game_servers/ark/</span><br><span class="line">app_update 376030 validate</span><br><span class="line"><span class="comment"># 等待下载安装，装好后退出</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开放服务器端口"><a href="#开放服务器端口" class="headerlink" title="开放服务器端口"></a>开放服务器端口</h2><p>使用root用户登陆系统，开放游戏服务器使用的端口[2]：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=7777/udp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=7778/udp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=27015/udp --permanent</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>因不使用RCON，所以不开放<code>27020/tcp</code>端口。</p>
+<h2 id="启动与测试"><a href="#启动与测试" class="headerlink" title="启动与测试"></a>启动与测试</h2><p>在<code>~/game_servers/ark/ShooterGame/Binaries/Linux/</code>下新建启动脚本<code>server_start.sh</code>，其内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">./ShooterGameServer TheIsland?listen?SessionName=Family?ServerPassword=123?ServerAdminPassword=asdf123 -server -<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p>其中包含的信息如下，关于命令行语法与参数的详细信息，参见[3]中Command Line Syntax和Command Line Arguments这两章。</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>地图</td>
+<td>The Island 孤岛</td>
+</tr>
+<tr>
+<td>服务器名 <code>SessionName</code></td>
+<td>Family</td>
+</tr>
+<tr>
+<td>密码 <code>Password</code></td>
+<td><code>123</code></td>
+</tr>
+<tr>
+<td>管理员权限密码 <code>ServerAdminPassword</code></td>
+<td><code>asdf123</code></td>
+</tr>
+</tbody></table>
+<p>给脚本加入可执行权限，然后运行测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x server_start.sh</span><br><span class="line">./server_start.sh</span><br></pre></td></tr></table></figure>
+
+<p>等待片刻后，便可通过“Steam界面（窗口）-&gt;视图（菜单）-&gt;服务器（菜单项）-&gt;服务器（窗口）-&gt;收藏夹（标签页）-&gt;添加服务器（按钮）-&gt;输入服务器IP地址-&gt;在此地址上寻找游戏（按钮）”看到ARK服务器的相关信息。如果客户端与服务器都在局域网内，也可以在游戏中的“加入线上方舟-&gt;筛选服务器：局域网”看到自己搭建的服务器。</p>
+<h2 id="通过systemd启动与管理游戏"><a href="#通过systemd启动与管理游戏" class="headerlink" title="通过systemd启动与管理游戏"></a>通过<code>systemd</code>启动与管理游戏</h2><p>创建文件<code>/etc/systemd/system/ark.service</code>文件，内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=ARK: Survival Evolved dedicated server</span><br><span class="line"><span class="attr">Wants</span>=network-<span class="literal">on</span>line.target</span><br><span class="line"><span class="attr">After</span>=syslog.target network.target nss-lookup.target network-<span class="literal">on</span>line.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">ExecStart</span>=/home/steam/game_servers/ark/ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen?SessionName=Family -server -log -automanagedmods</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/home/steam/game_servers/ark/ShooterGame/Binaries/Linux</span><br><span class="line"><span class="attr">LimitNOFILE</span>=<span class="number">100000</span></span><br><span class="line"><span class="attr">ExecReload</span>=/bin/kill -s HUP <span class="variable">$MAINPID</span></span><br><span class="line"><span class="attr">ExecStop</span>=/bin/kill -s INT <span class="variable">$MAINPID</span></span><br><span class="line"><span class="attr">User</span>=steam</span><br><span class="line"><span class="attr">Group</span>=steam</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>注意这里和[2]中的不同，这里使用了<code>-automanagedmods</code>参数。<code>-automanagedmods</code>参数可以让服务器在启动前，自动下载、安装、更新MOD，只需要将MOD的创意工坊ID添加进<code>GameUserSettings.ini</code>便可。具体内容我们将在后面的“服务器MOD”这一节进行详述。</p>
+<h2 id="服务器设置"><a href="#服务器设置" class="headerlink" title="服务器设置"></a>服务器设置</h2><p>服务器配置涉及到的主要文件为<code>~/game_servers/ark/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini</code>。我通过<a href="https://ini.arkforum.de/index.php" target="_blank" rel="noopener">ATLAS / ARK GameUserSettings.ini Generator</a>按照个人喜好设置了服务器的各项参数，下载后替换游戏自动生成的<code>GameUserSettings.ini</code>文件便可。在弄明白<code>GameUserSettings.ini</code>的各项参数的作用后，我决定自己写一个中文版的。</p>
+<h2 id="服务器MOD"><a href="#服务器MOD" class="headerlink" title="服务器MOD"></a>服务器MOD</h2><p>在“通过<code>systemd</code>启动与管理游戏”这一节，我们提到了<code>-automanagedmods</code>参数，这个参数可以让服务器在启动前，自动下载、安装、更新MOD，只需要将MOD的创意工坊ID添加进<code>GameUserSettings.ini</code>便可。我在[6]中选择了几个自己喜欢的MOD添加进去，分别是Awesome Teleporters!（889745138）、DinoTracker（924933745）、Death Recovery Mod（751991809）和Awesome SpyGlass（1404697612）。在<code>GameUserSettings.ini</code>的<code>[ServerSettings]</code>中添加一项<code>ActiveMods=889745138,924933745,751991809,1404697612</code>便可[3]。</p>
+<p>在修改完配置文件后，不要着急启动服务器，如果此时启动服务器，服务器会去<code>~/game_servers/ark/Engine/Binaries/ThirdParty/SteamCMD/Linux</code>目录下启动SteamCMD，如果此目录下没有SteamCMD的程序文件，则会报如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Using binned.</span><br><span class="line">4.5.1-0+UE4 7038 3077 402 5</span><br><span class="line">[S_API FAIL] SteamAPI_Init() failed; SteamAPI_IsSteamRunning() failed.</span><br><span class="line">Setting breakpad minidump AppID = 346110</span><br><span class="line">LowLevelFatalError [File:E:\SVN_Ark\Engine\Source\Runtime\Core\Private\Linux\LinuxPlatformProcess.cpp] [Line: 652]</span><br><span class="line">FLinuxPlatformProcess::WaitForProc: waitid for pid -1 failed (errno=22, Invalid argument)</span><br><span class="line">Signal 11 caught.</span><br><span class="line">EngineCrashHandler: Signal=11</span><br><span class="line">Segmentation fault (core dumped)</span><br></pre></td></tr></table></figure>
+
+<p>为了避免此错误的出现，首先应该去查看该目录下有没有SteamCMD的程序文件，如果没有，则可以创建SteamCMD的安装目录的链接文件，然后放到此目录下。我是这样做的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/game_servers/ark/Engine/Binaries/ThirdParty/SteamCMD/</span><br><span class="line">ln -s /home/steam/Steam Linux</span><br></pre></td></tr></table></figure>
+
+<p>创建完链接文件后，便可启动服务器，通过<code>systemctl status -l ark</code>可看到服务器在下载安装MOD，稍等片刻，启动游戏，在加入服务器前，本地游戏也会提示安装MOD，待安装后，便可在游戏中尽情体验了。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Valve Developer Community. Steam命令行版客户端. Valve Developer Community. 2018-2-26. <a href="https://developer.valvesoftware.com/wiki/SteamCMD:zh-cn" target="_blank" rel="noopener">Official Website</a>.</p>
+<p>[2] Volunteers in gamers. Dedicated Server Setup. Official ARK: Survival Evolved Wiki. 2019-7-19. <a href="https://ark.gamepedia.com/Dedicated_Server_Setup" target="_blank" rel="noopener">Official Website</a>.</p>
+<p>[3] Volunteers in gamers. Server Configuration. Official ARK: Survival Evolved Wiki. 2019-7-6. <a href="https://ark.gamepedia.com/Server_Configuration" target="_blank" rel="noopener">Official Website</a>.</p>
+<p>[4] Volunteers in gamers. Console Commands - Official ARK: Survival Evolved Wiki, <a href="https://ark.gamepedia.com/Console_Commands" target="_blank" rel="noopener">Official Webpage</a></p>
+<p>[5] Valve Developer Community. Dedicated Servers List. Valve Developer Community. 2019-5-24. <a href="https://developer.valvesoftware.com/wiki/Dedicated_Servers_List" target="_blank" rel="noopener">Official Website</a>.</p>
+<p>[6] 豪弟弟. 方舟生存进化有哪些可玩性高的mod？ - 豪弟弟的回答. 知乎. <a href="https://www.zhihu.com/question/39239212/answer/707836731" target="_blank" rel="noopener">Details</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/CentOS7搭建Ark-Survival-and-Evovled私服/" data-id="ck0qjwbre000062vmw1rykf0h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/19/CentOS7搭建Ark-Survival-and-Evovled私服/">CentOS7搭建Ark: Survival and Evovled私服</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 GreatestCapacity<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
